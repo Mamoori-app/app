@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mamoori/main.dart';
+import 'package:mamoori/view/write_view.dart';
 
 class HomeView extends StatefulWidget {
   final String title;
@@ -47,7 +48,13 @@ class _HomeViewState extends State<HomeView> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WriteView(),
+                      ));
+                },
                 child: Container(
                   margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
