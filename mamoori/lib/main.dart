@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:mamoori/view/home_view.dart';
 
 void main() {
-  runApp(MaterialApp(home: const MyApp()));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  static final String title = 'MAMOORI';
 
   @override
   Widget build(BuildContext context) {
-    return HomeView();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          primaryColor: Colors.orange[300],
+          scaffoldBackgroundColor: Colors.white),
+      home: HomeView(title: title),
+    );
   }
 }
