@@ -17,16 +17,14 @@ class InputFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        child: Column(children: [
-          buildTitle(),
-          buildContent(),
-        ]),
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
       ),
+      child: Column(children: [
+        buildTitle(),
+        buildContent(),
+      ]),
     );
   }
 
