@@ -41,6 +41,31 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  height: MediaQuery.of(context).size.width * 0.1,
+                  child: const Center(
+                      child: Text(
+                    '유서작성하기',
+                    style: TextStyle(color: Colors.white),
+                  )),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
