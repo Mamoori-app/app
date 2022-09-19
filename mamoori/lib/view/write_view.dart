@@ -23,21 +23,16 @@ class _WriteViewState extends State<WriteView> {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              Text('제목'),
-              InputFormWidget(
-                title: title,
-                content: content,
-                onChangedTitle: (title) => setState(
-                  () => this.title = title,
-                ),
-                onChangedContent: (content) => setState(
-                  () => this.content = content,
-                ),
-                onSavedWill: () {},
-              ),
-            ],
+          InputFormWidget(
+            title: title,
+            content: content,
+            onChangedTitle: (title) => setState(
+              () => this.title = title,
+            ),
+            onChangedContent: (content) => setState(
+              () => this.content = content,
+            ),
+            onSavedWill: () {},
           ),
         ],
       ),
