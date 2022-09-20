@@ -21,10 +21,14 @@ class InputFormWidget extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: MediaQuery.of(context).size.width,
       ),
-      child: Column(children: [
-        buildTitle(),
-        buildContent(),
-      ]),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(children: [
+          buildTitle(),
+          buildContent(),
+          buildButton(),
+        ]),
+      ),
     );
   }
 
@@ -70,5 +74,15 @@ class InputFormWidget extends StatelessWidget {
             ),
           ),
         ],
+      );
+
+  Widget buildButton() => SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.black)),
+          onPressed: onSavedWill,
+          child: Text('저장하기'),
+        ),
       );
 }
