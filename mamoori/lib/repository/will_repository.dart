@@ -3,7 +3,7 @@ import '../domain/model/will.dart';
 abstract class WillRepository {
   Future<List<Will>> getWills();
 
-  Future<Will> getWillById(int id);
+  Future<Will?> getWillById(int id);
 
   Future<void> insertWill(Will will);
 
