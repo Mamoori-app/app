@@ -12,13 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-    create: ((context) => WillsProvider(),
-    child: MaterialApp(
+        create: ((context) => WillsProvider()),
+        child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               primaryColor: Colors.orange[300],
               scaffoldBackgroundColor: Colors.white),
           home: HomeView(title: title),
         ),
-  );
+      );
 }
