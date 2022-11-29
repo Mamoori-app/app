@@ -1,7 +1,11 @@
+import 'package:mamoori/data/data_source/will_db.dart';
 import 'package:mamoori/domain/model/will.dart';
 import 'package:mamoori/repository/will_repository.dart';
 
 class WillRepositoryImpl implements WillRepository {
+  WillDB db;
+  WillRepositoryImpl(this.db);
+
   @override
   Future<void> deleteWill(Will will) {
     // TODO: implement deleteWill
