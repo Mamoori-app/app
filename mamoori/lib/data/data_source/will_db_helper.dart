@@ -2,9 +2,9 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../domain/model/will.dart';
 
-class WillDB {
+class WillDBHelper {
   Database db;
-  WillDB(this.db);
+  WillDBHelper(this.db);
 
   Future<Will?> getWillById(int id) async {
     //SELECT * FROM will WHEHE id = 1
