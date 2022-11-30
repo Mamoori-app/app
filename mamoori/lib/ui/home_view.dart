@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mamoori/main.dart';
-import 'package:mamoori/view/write_view.dart';
+import 'package:mamoori/ui/write_view.dart';
 
 class HomeView extends StatefulWidget {
   final String title;
