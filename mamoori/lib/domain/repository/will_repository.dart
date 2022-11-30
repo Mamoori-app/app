@@ -1,4 +1,4 @@
-import '../domain/model/will.dart';
+import '../model/will.dart';
 
 abstract class WillRepository {
   Future<List<Will>> getWills();

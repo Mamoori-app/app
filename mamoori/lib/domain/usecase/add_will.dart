@@ -1,4 +1,4 @@
-import 'package:mamoori/repository/will_repository.dart';
+import 'package:mamoori/domain/repository/will_repository.dart';
 
 import '../model/will.dart';
 

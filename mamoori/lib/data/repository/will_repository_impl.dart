@@ -1,6 +1,6 @@
 import 'package:mamoori/data/data_source/will_db_helper.dart';
 import 'package:mamoori/domain/model/will.dart';
-import 'package:mamoori/repository/will_repository.dart';
+import 'package:mamoori/domain/repository/will_repository.dart';
 
 class WillRepositoryImpl implements WillRepository {
   WillDBHelper db;

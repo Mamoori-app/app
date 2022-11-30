@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mamoori/presentation/home_view.dart';
+import 'package:mamoori/ui/home_view.dart';
 
 void main() {
   runApp(MyApp());

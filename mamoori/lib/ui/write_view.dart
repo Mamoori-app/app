@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mamoori/widget/input_form_widget.dart';
+import 'package:mamoori/ui/widget/input_form_widget.dart';
 
 class WriteView extends StatefulWidget {
   WriteView({Key? key}) : super(key: key);
