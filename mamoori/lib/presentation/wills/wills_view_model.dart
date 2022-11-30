@@ -3,13 +3,14 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:mamoori/domain/repository/will_repository.dart';
 import 'package:mamoori/presentation/wills/wills_event.dart';
+import 'package:mamoori/presentation/wills/wills_state.dart';
 
 import '../../domain/model/will.dart';
 
 class WillViewModel with ChangeNotifier {
   final WillRepository repository;
-  List<Will> _wills = [];
-  UnmodifiableListView<Will> get will => UnmodifiableListView(_wills);
+  WillsState _state = WillsState(will: []);
+  WillsState get state => _state;
 
   Will? _recentlyDeletedWill;
 
@@ -25,7 +26,9 @@ class WillViewModel with ChangeNotifier {
 
   Future<void> _loadWills() async {
     List<Will> wills = await repository.getWills();
-    _wills = wills;
+    _state = state.copyWith(
+      will: wills,
+    );
     notifyListeners();
   }
 
