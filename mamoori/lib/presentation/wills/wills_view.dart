@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mamoori/main.dart';
-import 'package:mamoori/ui/colors.dart';
-import 'package:mamoori/ui/write_view.dart';
-
 import '../../domain/model/will.dart';
+import '../add_edit_will/add_edit_will_view.dart';
 import 'components/will_item.dart';
 
 class WillsView extends StatefulWidget {
@@ -76,7 +74,7 @@ class _WillsViewState extends State<WillsView> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => WriteView(),
+                builder: (context) => AddEditWillView(),
               ));
         },
       ),
