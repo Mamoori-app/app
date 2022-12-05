@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class AddEditWillView extends StatelessWidget {
+class AddEditWillView extends StatefulWidget {
   AddEditWillView({Key? key}) : super(key: key);
 
-  // final titleController;
-  // final contentController;
+  @override
+  State<AddEditWillView> createState() => _AddEditWillViewState();
+}
+
+class _AddEditWillViewState extends State<AddEditWillView> {
+  final _titleController= TextEditingController();
+  final _contentController= TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,18 +23,19 @@ class AddEditWillView extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              //controller: titleController,
+              controller: _titleController,
               maxLines: 1,
               style: Theme.of(context).textTheme.headline5!.copyWith(
                     color: Colors.white,
                   ),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintStyle: TextStyle(color: Colors.white),
                 hintText: '제목을 입력하세요',
                 border: InputBorder.none,
               ),
             ),
             TextField(
+              controller: _contentController,
               maxLines: null,
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
                 color: Colors.white,
@@ -53,6 +60,10 @@ class AddEditWillView extends StatelessWidget {
             // ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {  },
+        child: const Icon(Icons.add),
       ),
     );
   }
