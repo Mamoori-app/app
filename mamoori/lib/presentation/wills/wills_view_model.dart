@@ -14,7 +14,9 @@ class WillViewModel with ChangeNotifier {
 
   Will? _recentlyDeletedWill;
 
-  WillViewModel(this.repository);
+  WillViewModel(this.repository){
+    _loadWills();
+  }
 
   void onEvent(WillsEvent event) {
     event.when(

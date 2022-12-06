@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mamoori/main.dart';
+import 'package:mamoori/presentation/wills/wills_event.dart';
+import 'package:mamoori/presentation/wills/wills_view_model.dart';
+import 'package:provider/provider.dart';
 import '../../domain/model/will.dart';
 import '../add_edit_will/add_edit_will_view.dart';
 import 'components/will_item.dart';
@@ -16,10 +19,9 @@ class _WillsViewState extends State<WillsView> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    final tabs = [
-      Container(),
-      Container(),
-    ];
+    final viewModel = context.watch<WillViewModel>();
+    final state = viewModel.state;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -58,24 +60,22 @@ class _WillsViewState extends State<WillsView> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
-           children: [
-             WillItem(
-                will: Will(title: 'title1', content: 'content1', createdTime: 1, ),
-             ),
-             WillItem(
-               will: Will(title: 'title2', content: 'content2', createdTime: 2, ),
-             ),
-           ],
+          children: state.will.map((will) => WillItem(will: will)).toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          bool? isSaved= await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => AddEditWillView(),
-              ));
+              )
+          );
+          if(isSaved != null && isSaved){
+            viewModel.onEvent(const WillsEvent.loadWills());
+          }
+
         },
       ),
     );

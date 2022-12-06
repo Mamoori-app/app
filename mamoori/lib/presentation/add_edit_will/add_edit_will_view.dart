@@ -1,18 +1,50 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:mamoori/presentation/add_edit_will/add_edit_will_event.dart';
+import 'package:provider/provider.dart';
+
+import '../../domain/model/will.dart';
+import 'add_edit_will_view_model.dart';
 
 class AddEditWillView extends StatefulWidget {
-  AddEditWillView({Key? key}) : super(key: key);
+  final Will? will;
+  AddEditWillView({Key? key, this.will}) : super(key: key);
 
   @override
   State<AddEditWillView> createState() => _AddEditWillViewState();
 }
 
 class _AddEditWillViewState extends State<AddEditWillView> {
-  final _titleController= TextEditingController();
-  final _contentController= TextEditingController();
+  final _titleController = TextEditingController();
+  final _contentController = TextEditingController();
+  StreamSubscription? _streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      final viewModel= context.read<AddEditWillViewModel>();
+      _streamSubscription= viewModel.eventStream.listen((event) {
+        event.when(saveWill: (){
+          Navigator.pop(context, true);
+        });
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _streamSubscription?.cancel();
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<AddEditWillViewModel>();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -38,8 +70,8 @@ class _AddEditWillViewState extends State<AddEditWillView> {
               controller: _contentController,
               maxLines: null,
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                color: Colors.white,
-              ),
+                    color: Colors.white,
+                  ),
               decoration: InputDecoration(
                 fillColor: Colors.white,
                 hintText: '내용을 입력하세요',
@@ -62,7 +94,18 @@ class _AddEditWillViewState extends State<AddEditWillView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {  },
+        onPressed: () {
+          if (_titleController.text.isEmpty ||
+              _contentController.text.isEmpty) {
+            const snackBar = SnackBar(content: Text('제목이나 내용을 입력해주세요'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+
+          viewModel.onEvent(AddEditWillEvent.saveWill(
+              widget.will == null ? null : widget.will!.id,
+              _titleController.text,
+              _contentController.text));
+        },
         child: const Icon(Icons.add),
       ),
     );
