@@ -60,22 +60,35 @@ class _WillsViewState extends State<WillsView> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
-          children: state.will.map((will) => WillItem(will: will)).toList(),
+          children: state.will
+              .map((will) => WillItem(
+                    will: will,
+                    onDeleteTap: () {
+                      viewModel.onEvent(WillsEvent.deleteWills(will));
+
+                      final snackBar= SnackBar(content: Text('유서가 삭제되었습니다.'),
+                      action: SnackBarAction(label: '취소',
+                      onPressed: (){
+                        viewModel.onEvent(const WillsEvent.restoreWill());
+                      },
+                      ),);
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                  ))
+              .toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
-          bool? isSaved= await Navigator.push(
+          bool? isSaved = await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => AddEditWillView(),
-              )
-          );
-          if(isSaved != null && isSaved){
+              ));
+          if (isSaved != null && isSaved) {
             viewModel.onEvent(const WillsEvent.loadWills());
           }
-
         },
       ),
     );
