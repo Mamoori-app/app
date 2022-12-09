@@ -39,41 +39,38 @@ class _WillsViewState extends State<WillsView> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.white.withOpacity(0.7),
-        selectedItemColor: Colors.white,
-        currentIndex: selectedIndex,
-        onTap: (index) => setState(() {
-          selectedIndex = index;
-        }),
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fact_check_outlined),
-            label: '유서 목록',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.done),
-            label: '유서 작성',
-          ),
-        ],
-      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: state.will
-              .map((will) => WillItem(
-                    will: will,
-                    onDeleteTap: () {
-                      viewModel.onEvent(WillsEvent.deleteWills(will));
-
-                      final snackBar= SnackBar(content: Text('유서가 삭제되었습니다.'),
-                      action: SnackBarAction(label: '취소',
-                      onPressed: (){
-                        viewModel.onEvent(const WillsEvent.restoreWill());
-                      },
-                      ),);
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              .map((will) => GestureDetector(
+                    onTap: () async {
+                      bool? isSaved = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddEditWillView(will: will),
+                          ));
+                      if (isSaved != null && isSaved) {
+                        viewModel.onEvent(const WillsEvent.loadWills());
+                      }
                     },
+                    child: WillItem(
+                      will: will,
+                      onDeleteTap: () {
+                        viewModel.onEvent(WillsEvent.deleteWills(will));
+
+                        final snackBar = SnackBar(
+                          content: Text('유서가 삭제되었습니다.'),
+                          action: SnackBarAction(
+                            label: '취소',
+                            onPressed: () {
+                              viewModel.onEvent(const WillsEvent.restoreWill());
+                            },
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                    ),
                   ))
               .toList(),
         ),

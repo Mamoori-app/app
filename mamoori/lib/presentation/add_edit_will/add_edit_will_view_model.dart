@@ -11,8 +11,8 @@ class AddEditWillViewModel with ChangeNotifier {
 
   // int _color= Colors.orange.value;
   // int get color=> _color;
-  final _eventController= StreamController<AddEditWillUiEvent>.broadcast();
-  Stream<AddEditWillUiEvent> get eventStream=> _eventController.stream;
+  final _eventController = StreamController<AddEditWillUiEvent>.broadcast();
+  Stream<AddEditWillUiEvent> get eventStream => _eventController.stream;
 
   AddEditWillViewModel(this.repository);
 
@@ -40,13 +40,14 @@ class AddEditWillViewModel with ChangeNotifier {
     } else {
       repository.updateWill(
         Will(
+            id: id,
             title: title,
             content: content,
             // color: color,
             createdTime: DateTime.now().millisecondsSinceEpoch),
       );
     }
-    
+
     _eventController.add(const AddEditWillUiEvent.saveWill());
   }
 }

@@ -23,6 +23,10 @@ class _AddEditWillViewState extends State<AddEditWillView> {
   @override
   void initState() {
     super.initState();
+    if(widget.will!=null){
+      _titleController.text= widget.will!.title;
+      _contentController.text= widget.will!.content;
+    }
     Future.microtask(() {
       final viewModel= context.read<AddEditWillViewModel>();
       _streamSubscription= viewModel.eventStream.listen((event) {
@@ -79,17 +83,6 @@ class _AddEditWillViewState extends State<AddEditWillView> {
                 border: InputBorder.none,
               ),
             ),
-            // InputFormWidget(
-            //   title: 'title',
-            //   content: 'content',
-            //   onChangedTitle: (title) => setState(
-            //         () => this.title = title,
-            //   ),
-            //   onChangedContent: (content) => setState(
-            //         () => this.content = content,
-            //   ),
-            //   onSavedWill: () {},
-            // ),
           ],
         ),
       ),
