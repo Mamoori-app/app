@@ -3,7 +3,6 @@ import 'package:mamoori/main.dart';
 import 'package:mamoori/presentation/wills/wills_event.dart';
 import 'package:mamoori/presentation/wills/wills_view_model.dart';
 import 'package:provider/provider.dart';
-import '../../domain/model/will.dart';
 import '../add_edit_will/add_edit_will_view.dart';
 import 'components/will_item.dart';
 
@@ -25,12 +24,12 @@ class _WillsViewState extends State<WillsView> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.sort),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(Icons.sort),
+        //   ),
+        // ],
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           MyApp.title,
