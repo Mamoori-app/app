@@ -38,7 +38,9 @@ class _WillsViewState extends State<WillsView> {
           ),
         ),
       ),
-      body: Padding(
+      body:
+      state.will.isEmpty ? const Center(child: Text('작성된 유서가 없습니다. 유서를 작성하세요.', style: TextStyle(color: Colors.white),)):
+      Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: state.will
@@ -59,7 +61,7 @@ class _WillsViewState extends State<WillsView> {
                         viewModel.onEvent(WillsEvent.deleteWills(will));
 
                         final snackBar = SnackBar(
-                          content: Text('유서가 삭제되었습니다.'),
+                          content: const Text('유서가 삭제되었습니다.'),
                           action: SnackBarAction(
                             label: '취소',
                             onPressed: () {

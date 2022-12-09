@@ -18,7 +18,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  static final String title = 'MAMOORI';
+  static final String title = '그루잠';
 
   @override
   Widget build(BuildContext context) {
