@@ -29,6 +29,14 @@ class AddEditWillViewModel with ChangeNotifier {
   // }
 
   Future<void> _saveWill(int? id, String title, String content) async {
+    if(title.isEmpty){
+      _eventController.add(const AddEditWillUiEvent.showSnackBar('제목이 비어있어요'));
+      return;
+    }else if(content.isEmpty){
+      _eventController.add(const AddEditWillUiEvent.showSnackBar('내용이 비어있어요'));
+      return;
+    }
+
     if (id == null) {
       repository.insertWill(
         Will(

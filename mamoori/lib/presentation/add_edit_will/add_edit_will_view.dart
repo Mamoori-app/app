@@ -32,6 +32,9 @@ class _AddEditWillViewState extends State<AddEditWillView> {
       _streamSubscription= viewModel.eventStream.listen((event) {
         event.when(saveWill: (){
           Navigator.pop(context, true);
+        }, showSnackBar: (String message) {
+          final snackBar = SnackBar(content: Text(message));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         });
       });
     });
@@ -88,12 +91,6 @@ class _AddEditWillViewState extends State<AddEditWillView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_titleController.text.isEmpty ||
-              _contentController.text.isEmpty) {
-            const snackBar = SnackBar(content: Text('제목이나 내용을 입력해주세요'));
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          }
-
           viewModel.onEvent(AddEditWillEvent.saveWill(
               widget.will == null ? null : widget.will!.id,
               _titleController.text,
