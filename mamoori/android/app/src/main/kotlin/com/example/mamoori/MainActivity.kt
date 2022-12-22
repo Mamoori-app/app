@@ -1,4 +1,4 @@
-package com.example.mamoori
+package com.mamoori.mamoori
 
 import io.flutter.embedding.android.FlutterActivity
 
