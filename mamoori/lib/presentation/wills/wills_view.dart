@@ -15,7 +15,6 @@ class WillsView extends StatefulWidget {
 }
 
 class _WillsViewState extends State<WillsView> {
-  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<WillViewModel>();
