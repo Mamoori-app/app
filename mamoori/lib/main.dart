@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
             ),
       ),
       home: const SocialLogin()
-      //home: WillsView(title: title),
     );
   }
 }
