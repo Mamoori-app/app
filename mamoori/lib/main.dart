@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:mamoori/di/provider_setup.dart';
+import 'package:mamoori/presentation/social_login.dart';
 import 'package:mamoori/presentation/wills/wills_view.dart';
 import 'package:provider/provider.dart';
 import 'api/api_key.dart';
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
               backgroundColor: darkGray,
             ),
       ),
-      home: WillsView(title: title),
+      home: const SocialLogin()
+      //home: WillsView(title: title),
     );
   }
 }
