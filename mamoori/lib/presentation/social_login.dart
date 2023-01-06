@@ -27,36 +27,31 @@ class SocialLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: TextButton(
-          onPressed: () async {
-            if (await isKakaoTalkInstalled()) {
-              try {
-                await UserApi.instance.loginWithKakaoTalk();
-                print('카카오톡으로 로그인 성공');
-                _get_user_info(context);
-              } catch (error) {
-                print('카카오톡으로 로그인 실패 $error');
-                // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
+        child: GestureDetector(
+            onTap: () async {
+              if (await isKakaoTalkInstalled()) {
+                try {
+                  await UserApi.instance.loginWithKakaoTalk();
+                  _get_user_info(context);
+                } catch (error) {
+                  // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
+                  try {
+                    await UserApi.instance.loginWithKakaoAccount();
+                    _get_user_info(context);
+                  } catch (error) {
+                    print('카카오계정으로 로그인 실패 $error');
+                  }
+                }
+              } else {
                 try {
                   await UserApi.instance.loginWithKakaoAccount();
-                  print('카카오계정으로 로그인 성공');
                   _get_user_info(context);
                 } catch (error) {
                   print('카카오계정으로 로그인 실패 $error');
                 }
               }
-            } else {
-              try {
-                await UserApi.instance.loginWithKakaoAccount();
-                print('카카오계정으로 로그인 성공');
-                _get_user_info(context);
-              } catch (error) {
-                print('카카오계정으로 로그인 실패 $error');
-              }
-            }
-          },
-          child: Text('카카오 로그인'),
-        ),
+            },
+            child: Image.asset('assets/kakao/kakao_login_medium_narrow.png')),
       ),
     );
   }
