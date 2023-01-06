@@ -11,7 +11,7 @@ class SocialLogin extends StatelessWidget {
       print('사용자 정보 요청 성공'
           '\n회원번호: ${user.id}'
           '\n닉네임: ${user.kakaoAccount?.profile?.nickname}');
-      if (user.id!=null){
+      if (user.id != null) {
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -26,32 +26,46 @@ class SocialLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: GestureDetector(
-            onTap: () async {
-              if (await isKakaoTalkInstalled()) {
-                try {
-                  await UserApi.instance.loginWithKakaoTalk();
-                  _get_user_info(context);
-                } catch (error) {
-                  // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
-                  try {
-                    await UserApi.instance.loginWithKakaoAccount();
-                    _get_user_info(context);
-                  } catch (error) {
-                    print('카카오계정으로 로그인 실패 $error');
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/mamoori.png',
+            width: 80,
+            height: 80,
+          ),
+          const SizedBox(height: 50),
+          Center(
+            child: GestureDetector(
+                onTap: () async {
+                  if (await isKakaoTalkInstalled()) {
+                    try {
+                      await UserApi.instance.loginWithKakaoTalk();
+                      _get_user_info(context);
+                    } catch (error) {
+                      // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
+                      try {
+                        await UserApi.instance.loginWithKakaoAccount();
+                        _get_user_info(context);
+                      } catch (error) {
+                        print('카카오계정으로 로그인 실패 $error');
+                      }
+                    }
+                  } else {
+                    try {
+                      await UserApi.instance.loginWithKakaoAccount();
+                      _get_user_info(context);
+                    } catch (error) {
+                      print('카카오계정으로 로그인 실패 $error');
+                    }
                   }
-                }
-              } else {
-                try {
-                  await UserApi.instance.loginWithKakaoAccount();
-                  _get_user_info(context);
-                } catch (error) {
-                  print('카카오계정으로 로그인 실패 $error');
-                }
-              }
-            },
-            child: Image.asset('assets/kakao/kakao_login_medium_narrow.png')),
+                },
+                child:
+                    Image.asset('assets/kakao/kakao_login_medium_narrow.png')),
+          ),
+          const SizedBox(height: 100),
+        ],
       ),
     );
   }
