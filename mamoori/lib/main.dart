@@ -9,7 +9,7 @@ import 'ui/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  KakaoSdk.init(nativeAppKey: kakaoNativeKey);
+  // KakaoSdk.init(nativeAppKey: kakaoNativeKey);
   final providers = await getProviders();
   runApp(
     MultiProvider(
@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
               backgroundColor: darkGray,
             ),
       ),
-      home: const SocialLogin()
+      //home: const SocialLogin()
+      home: WillsView(title: '마무리'),
     );
   }
 }
