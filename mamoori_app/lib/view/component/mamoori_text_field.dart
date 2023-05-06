@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mamoori_app/utll/color.dart';
+
+import '../../util/color.dart';
 
 class MamooriTextField extends StatelessWidget {
   final TextEditingController controller;

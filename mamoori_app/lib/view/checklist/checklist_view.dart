@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'dart:math';
 
-import '../../utll/color.dart';
+import '../../util/color.dart';
 import '../component/mamoori_layout.dart';
 
 

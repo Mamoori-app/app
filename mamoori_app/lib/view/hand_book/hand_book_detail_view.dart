@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mamoori_app/utll/color.dart';
 import 'package:mamoori_app/view/component/mamoori_layout.dart';
 
+import '../../util/color.dart';
 import '../component/text.dart';
 
 class HandbookDetailView extends StatelessWidget {

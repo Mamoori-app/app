@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mamoori_app/utll/color.dart';
+
+import '../../util/color.dart';
 
 class MamooriButton extends StatelessWidget {
   final Widget widget;

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mamoori_app/utll/color.dart';
 import 'package:mamoori_app/view/component/mamoori_button.dart';
 import 'package:mamoori_app/view/component/mamoori_layout.dart';
 import 'package:mamoori_app/view/component/text.dart';
 import 'package:mamoori_app/view/will/will_write_view.dart';
+
+import '../../util/color.dart';
 
 class WillHomeView extends StatelessWidget {
   const WillHomeView({Key? key}) : super(key: key);

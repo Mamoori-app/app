@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mamoori_app/utll/color.dart';
+import '../../util/color.dart';
 import '../component/mamoori_button.dart';
 import '../mamoori_home.dart';
 

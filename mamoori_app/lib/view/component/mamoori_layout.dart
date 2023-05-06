@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utll/color.dart';
+import '../../util/color.dart';
 import 'text.dart';
 
 class MamooriLayout extends StatelessWidget {
